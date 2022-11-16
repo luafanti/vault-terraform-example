@@ -29,5 +29,5 @@ spec:
     - image: nginx:latest
       name: nginx
       command: ['/bin/bash']
-      args: ['-c', 'source /vault/secrets/envs && env > /vault/secrets/test && tail -f /dev/null' ]
+      args: ['-c', 'source /vault/secrets/envs && env > /vault/secrets/tmp && tail -f /dev/null' ]
   serviceAccountName: cat-auth
