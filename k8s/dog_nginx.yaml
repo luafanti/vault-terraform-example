@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dog-nginx
+  annotations:
+    vault.hashicorp.com/agent-inject: 'true'
+    vault.hashicorp.com/role: 'dog_kubernetes_role'
+    vault.hashicorp.com/agent-inject-secret-db.txt: 'dog-db/creds/dog-dynamic-role'
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginx
+  serviceAccountName: dog-auth

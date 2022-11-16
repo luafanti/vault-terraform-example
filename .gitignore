@@ -1,0 +1,22 @@
+# Terraform
+**/.terraform/*
+vault-terraform/*.tfstate
+vault-terraform/*.tfstate.*
+vault-terraform/crash.log
+vault-terraform/crash.*.log
+vault-terraform/*.tfvars
+vault-terraform/*.tfvars.json
+vault-terraform/.terraformrc
+vault-terraform/terraform.rc
+
+# IDE
+.idea/*
+*.iml
+.history/
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
