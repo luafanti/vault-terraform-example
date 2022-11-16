@@ -34,8 +34,8 @@ resource "vault_database_secret_backend_role" "dog_dynamic_role" {
   name        = "dog-dynamic-role"
   backend     = vault_database_secrets_mount.dog-db.path
   db_name     = vault_database_secrets_mount.dog-db.postgresql[0].name
-  default_ttl = 600
-  max_ttl     = 600
+  default_ttl = 3600
+  max_ttl     = 3600
 
   creation_statements = [
     "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
