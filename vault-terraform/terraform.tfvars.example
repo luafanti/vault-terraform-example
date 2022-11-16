@@ -1,0 +1,8 @@
+#------------------------------------------------
+# Set your k8s namespace and postgres credentials after Prerequisites form README.md
+#------------------------------------------------
+
+kubernetes_namespace = "vault-poc"
+postgres_username    = ""
+postgres_password    = ""
+postgres_host        = ""

@@ -20,9 +20,9 @@ resource "vault_database_secrets_mount" "dog-db" {
 
   postgresql {
     name              = "postgres"
-    username          = "postgres"
-    password          = "postgres"
-    connection_url    = "postgresql://{{username}}:{{password}}@10.100.213.0:5432"
+    username          = var.postgres_username
+    password          = var.postgres_password
+    connection_url    = "postgresql://{{username}}:{{password}}@${var.postgres_host}:5432"
     verify_connection = true
     allowed_roles = [
       "dog*",
