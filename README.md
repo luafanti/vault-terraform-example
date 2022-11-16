@@ -1,6 +1,6 @@
 # HashiCorp Vault - terraform examples
 
-Samples of Vault resources defined with Terraform
+Example of Vault resources definition as a code with Terraform
 
 ## Prerequisites
 
@@ -56,6 +56,8 @@ This same root token you can use to authorize in Vault UI
 ```
 kubectl port-forward svc/vault 8200:8200
 ```
+
+Set also `address` in `vault-terraform/main.tf` accordingly to your port-forwarding setup
 
 #### PostgreSQL
 
