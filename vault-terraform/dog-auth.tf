@@ -24,3 +24,9 @@ resource "vault_kubernetes_auth_backend_role" "dog_kubernetes_auth_role" {
   token_policies                   = ["dog_policy"]
   token_ttl                        = 3600
 }
+
+resource "vault_approle_auth_backend_role" "dog_approle_auth_role" {
+  backend        = vault_auth_backend.approle.path
+  role_name      = "dog_approle_role"
+  token_policies = ["dog_policy"]
+}

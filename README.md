@@ -94,12 +94,13 @@ For better understanding, I created separate resources for `dog` and `cat`.
 These entities can be treated as separate clients or separate applications.
 
 Terraform will install belows:
-* Dedicated policies for `cat` and `dog`
 * KV Secrets Engine - Version 2 for `cat` with two secrets entries
 * KV Secrets Engine - Version 2 for `dog` with single secret entry
 * PostgreSQL Database Secrets Engine for `dog`
-* PostgreSQL Database Dynamic Role for `dog` to generate dynamic database credentials
+* PostgreSQL Database Dynamic Role for `dog` to generate dynamic database credential
+* Dedicated policies for `cat` and `dog`
 * Userpass Auth Method for `cat` and `dog`
+* AppRole Auth Method for `dog`
 * Kubernetes Auth Method for `cat` and `dog` to inject secrets from Vault to pods using [Vault Agent Injector](https://developer.hashicorp.com/vault/docs/platform/k8s/injector)
 
 Using userpass auth you can evaluate if policies permissions works appropriate.
