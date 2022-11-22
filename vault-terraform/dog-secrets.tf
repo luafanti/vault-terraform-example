@@ -1,3 +1,7 @@
+## ---------------------------------------------------------------------------------------------------------------------
+## KV Secrets Engine - Version 2
+## ---------------------------------------------------------------------------------------------------------------------
+
 resource "vault_mount" "dog-kv-v2" {
   path = "dog-kv-v2"
   type = "kv-v2"
@@ -14,6 +18,10 @@ resource "vault_kv_secret_v2" "dog_credentials" {
     }
   )
 }
+
+## ---------------------------------------------------------------------------------------------------------------------
+## PostgreSQL Database Secrets Engine
+## ---------------------------------------------------------------------------------------------------------------------
 
 resource "vault_database_secrets_mount" "dog-db" {
   path = "dog-db"
@@ -34,8 +42,8 @@ resource "vault_database_secret_backend_role" "dog_dynamic_role" {
   name        = "dog-dynamic-role"
   backend     = vault_database_secrets_mount.dog-db.path
   db_name     = vault_database_secrets_mount.dog-db.postgresql[0].name
-  default_ttl = 3600
-  max_ttl     = 3600
+  default_ttl = 600
+  max_ttl     = 600
 
   creation_statements = [
     "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
@@ -44,12 +52,22 @@ resource "vault_database_secret_backend_role" "dog_dynamic_role" {
 
 }
 
-#resource "vault_database_secret_backend_static_role" "dog_static_role" {
-#  name                = "dog-static-role"
-#  backend             = vault_database_secrets_mount.dog-db.path
-#  db_name             = vault_database_secrets_mount.dog-db.postgresql[0].name
-#
-#  username            = "dog-static"
-#  rotation_period     = "3600"
-#  rotation_statements = ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"]
-#}
+## ---------------------------------------------------------------------------------------------------------------------
+## Transit Secrets Engine
+## ---------------------------------------------------------------------------------------------------------------------
+
+resource "vault_mount" "dog_transit" {
+  path                      = "dog-transit"
+  type                      = "transit"
+  description               = "Transit backend for Dog user"
+  default_lease_ttl_seconds = 3600
+  max_lease_ttl_seconds     = 86400
+}
+
+resource "vault_transit_secret_backend_key" "dog_transit_key" {
+  backend = vault_mount.dog_transit.path
+  name    = "dog_transit_key"
+
+  exportable             = true
+  allow_plaintext_backup = true
+}

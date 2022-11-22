@@ -10,3 +10,9 @@ path "sys/leases/renew" {
 path "sys/leases/revoke" {
   capabilities = ["update"]
 }
+path "dog-transit/encrypt/dog_transit_key" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+path "dog-transit/decrypt/dog_transit_key" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}

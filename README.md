@@ -96,6 +96,7 @@ These entities can be treated as separate clients or separate applications.
 Terraform will install belows:
 * KV Secrets Engine - Version 2 for `cat` with two secrets entries
 * KV Secrets Engine - Version 2 for `dog` with single secret entry
+* Transit Secrets Engine for `dog`
 * PostgreSQL Database Secrets Engine for `dog`
 * PostgreSQL Database Dynamic Role for `dog` to generate dynamic database credential
 * Dedicated policies for `cat` and `dog`
